@@ -24,7 +24,7 @@ public class ItemPostAdapter extends ArrayAdapter<Item> {
         Item item = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.cardlayout_call_for_donation, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.cardlayout_item, parent, false);
         }
         TextView itemName = (TextView)convertView.findViewById(R.id.nameOfItem);
         itemName.setText("MY HEART!!!");

@@ -36,8 +36,9 @@ public class RegisterAs extends DialogFragment {
                     Toast.makeText(getContext(), "Please choose a role", Toast.LENGTH_SHORT).show();
                 } else {
                     SharedPreferences prefs = getActivity().getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
-                    prefs.edit().putInt(FinalsClass.ROLE_TYPE, index);
-                    prefs.edit().commit();
+                    SharedPreferences.Editor edit = prefs.edit();
+                    edit.putInt(FinalsClass.ROLE_TYPE, index);
+                    edit.commit();
 
                     getActivity().startActivity(new Intent(getActivity(), Register.class));
                     getActivity().finish();
