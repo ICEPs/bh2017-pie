@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_call"
     android:layout_width="match_parent"
@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="pie.simot.adding.AddCall">
 
     <TextView
@@ -19,16 +20,23 @@
         android:layout_marginBottom="15dp"
         android:text="Company Name"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item/s to Donate"/>
+
     <EditText
         android:layout_width="match_parent"
         android:paddingStart="10dp"
         android:padding="5dp"
-        android:id="@+id/postName"
+        android:id="@+id/items"
         android:layout_below="@id/orgName"
-        android:hint="Item/s to Donate"
-        android:layout_height="38dp"
-        android:background="@drawable/edittext_box"
+        android:layout_height="@dimen/editText_height"
         android:layout_marginBottom="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brief description of item/s"/>
 
     <EditText
         android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -39,14 +47,11 @@
         android:layout_width="match_parent"
         android:paddingStart="10dp"
         android:padding="5dp"
-        android:id="@+id/callDesc"
+        android:id="@+id/itemDesc"
         android:gravity="start"
-        android:hint="Briefly describe the item/s"
-        android:layout_height="150dp"
-        android:background="@drawable/edittext_box"
+        android:lines="3"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"/>
-
-
 
     <LinearLayout
         android:layout_below="@id/callDesc"
@@ -59,7 +64,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Urgency:"
-            android:textSize="20sp"
             android:layout_marginRight="10dp"/>
         <Spinner
             android:layout_width="match_parent"
@@ -69,6 +73,27 @@
             android:entries="@array/urgency_levels"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expiry Date of Product:"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:padding="3dp"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:text="02/19/17"
+            android:id="@+id/expiryDate"/>
+
+    </LinearLayout>
+
 
     <Button
         android:layout_below="@id/ur"
@@ -81,4 +106,4 @@
         />
 
 
-</RelativeLayout>
+</LinearLayout>
