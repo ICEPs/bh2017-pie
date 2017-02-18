@@ -1,0 +1,9 @@
+USER STORY for RESERVING GOODS
+	- DONATEE reserves
+	- DONATEE is asked to (optionally) edit the SMS to be sent to DONATOR
+	- Transaction object is created, and is marked pending
+	- DONATOR receives SMS asking to confirm
+	- DONATOR either confirms or denies
+		- if denied, Transaction is deleted, Item is returned to HostList
+		- if confirmed, remove "pending" tag
+		--> either way, the app still sends a message
