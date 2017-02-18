@@ -5,7 +5,7 @@
     android:overScrollMode="ifContentScrolls"
     android:scrollbarStyle="insideInset"
     android:layout_width="match_parent"
-    tools:context="pie.simot.Register">
+    tools:context="pie.simot.user.Register">
 <RelativeLayout android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

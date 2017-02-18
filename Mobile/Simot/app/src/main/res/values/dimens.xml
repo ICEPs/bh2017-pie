@@ -18,5 +18,5 @@
     <dimen name="body1">13sp</dimen>
     <dimen name="body">12sp</dimen>
 
-    <dimen name="list_item_padding">5dp</dimen>
+    <dimen name="list_item_padding">15dp</dimen>
 </resources>

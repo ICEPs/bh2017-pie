@@ -1,4 +1,4 @@
-package pie.simot;
+package pie.simot.beneficiarypart;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import pie.simot.R;
 
 /**
  * Created by elysi on 2/18/2017.

@@ -25,16 +25,16 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Login" >
+            android:name=".user.Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register"
+        <activity android:name=".user.Register"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".Dashboard"/>
+        <activity android:name=".tabbedfragments.Dashboard"/>
 
     </application>
 

@@ -1,24 +1,19 @@
-package pie.simot;
+package pie.simot.tabbedfragments;
 
 import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
+import pie.simot.FinalsClass;
+import pie.simot.R;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -50,8 +45,8 @@ public class Dashboard extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.mipmap.ic_view_list_white_24dp);
-        tabLayout.getTabAt(1).setIcon(R.mipmap.ic_home_white_24dp);
+        tabLayout.getTabAt(1).setIcon(R.mipmap.ic_view_list_white_24dp);
+        tabLayout.getTabAt(0).setIcon(R.mipmap.ic_home_white_24dp);
         tabLayout.getTabAt(2).setIcon(R.mipmap.ic_contact_phone_white_24dp);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

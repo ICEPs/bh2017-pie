@@ -1,4 +1,4 @@
-package pie.simot;
+package pie.simot.benefactorpart;
 
 /**
  * Created by elysi on 2/18/2017.

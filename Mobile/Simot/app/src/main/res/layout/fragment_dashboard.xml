@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pie.simot.Dashboard$PlaceholderFragment">
+    tools:context="pie.simot.tabbedfragments.Dashboard$PlaceholderFragment">
 
     <TextView
         android:id="@+id/section_label"
