@@ -41,6 +41,7 @@ GET /items
     item_name
     item_description
     company_name
+    urgency (int)
 
 GET /items/:id
   - Returns:
@@ -48,12 +49,14 @@ GET /items/:id
     item_name
     item_description
     company_name
+    urgency (int)
 
 POST /items
   - Parameters
     item_name
     item_description
     company_name
+    urgency (int)
 
 ## Transaction Endpoints
 
