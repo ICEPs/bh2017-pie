@@ -1,2 +1,3 @@
 **/idea.xml
 Web/simot-api/config/secrets.yml
+Web/simot-api/config/database.yml
