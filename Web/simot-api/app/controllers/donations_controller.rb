@@ -1,8 +1,8 @@
 class DonationsController < ApplicationController
-  before_action :set_items, only: [:show, :update, :destroy]
+  before_action :set_donations, only: [:show, :update, :destroy]
 
   def index
-    @items = Donations.all
+    @donations = Donations.all
 
     if params[:filter]
       case params[:filter]
@@ -10,41 +10,41 @@ class DonationsController < ApplicationController
       when "name"
         render json: get_by_name
       when "company_name"
-        render json: get_by_company_name
+        render json: get_by_organization_name
       when "urgency"
         render json: get_by_urgency
       end
     else
-      render json: @items
+      render json: @donations
     end
   end
 
   def create
-    @item = Deliverable.new(item_params)
+    @donation = Deliverable.new(donation_params)
 
-    if @item.save
-      render json: @item, status: :created, location: @item
+    if @donation.save
+      render json: @donation, status: :created, location: @donation
     else
-      render json: @item.errors, status: :unprocessable_entity
+      render json: @donation.errors, status: :unprocessable_entity
     end
   end
 
   def show
-    render json: @items
+    render json: @donations
   end
 
   def update
-    @item = Deliverable.find(params[:id])
+    @donation = Deliverable.find(params[:id])
 
-    if @item.update(item_params)
+    if @donation.update(donation_params)
       head :no_content
     else
-      render json: @item.errors, status: :unprocessable_entity
+      render json: @donation.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @item.destroy
+    @donation.destroy
 
     head :no_content
   end
@@ -53,24 +53,24 @@ class DonationsController < ApplicationController
 
   private
 
-    def set_items
-      @items = Donations.find(params[:id])
+    def set_donations
+      @donations = Donations.find(params[:id])
     end
 
-    def item_params
-      params.require(:item).permit!
+    def donation_params
+      params.require(:donation).permit!
     end
 
     def get_by_name
-      Donations.order(:item_name)
+      Donations.order(:donation_name)
     end
 
-    def get_by_company_name
-      Donations.order(:company_name)
+    def get_by_organization_name
+      Donations.order(:organization_name)
     end
 
     def get_by_urgency
-      Dojations.order(:urgency)
+      Donations.order(:urgency)
     end
 
 end
