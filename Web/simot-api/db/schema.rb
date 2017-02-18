@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218110523) do
+ActiveRecord::Schema.define(version: 20170218164631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "donations", force: :cascade do |t|
+    t.string   "message"
+    t.string   "organization_name"
+    t.integer  "urgency"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string   "item_name"
+    t.string   "item_description"
+    t.string   "company_name"
+    t.integer  "urgency"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "donation_id"
+    t.integer  "benefactor_id"
+    t.integer  "beneficiary_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["benefactor_id"], name: "index_transactions_on_benefactor_id", using: :btree
+    t.index ["beneficiary_id"], name: "index_transactions_on_beneficiary_id", using: :btree
+    t.index ["donation_id"], name: "index_transactions_on_donation_id", using: :btree
+    t.index ["item_id"], name: "index_transactions_on_item_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "company_name"
@@ -28,4 +58,8 @@ ActiveRecord::Schema.define(version: 20170218110523) do
     t.datetime "updated_at",          null: false
   end
 
+  add_foreign_key "transactions", "donations"
+  add_foreign_key "transactions", "items"
+  add_foreign_key "transactions", "users", column: "benefactor_id"
+  add_foreign_key "transactions", "users", column: "beneficiary_id"
 end
