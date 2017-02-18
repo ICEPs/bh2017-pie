@@ -16,35 +16,38 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterAs extends DialogFragment {
 
-    static RegisterAs newInstance() {
-        return new RegisterAs();
-    }
-
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.dialog_register_as, container, false);
+        view = inflater.inflate(R.layout.dialog_register_as, container, false);
 
-        v.findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RadioGroup chooseType = (RadioGroup) v.findViewById(R.id.chooseType);
-                int index = chooseType.indexOfChild(v.findViewById(chooseType.getCheckedRadioButtonId()));
-                SharedPreferences prefs = getActivity().getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
-                prefs.edit().putInt(FinalsClass.ROLE_TYPE, index);
-                prefs.edit().commit();
+                int index = -1;
+                RadioGroup chooseType = (RadioGroup) view.findViewById(R.id.chooseType);
+                index = chooseType.indexOfChild(view.findViewById(chooseType.getCheckedRadioButtonId()));
+                if(index == -1){
+                    Toast.makeText(getContext(), "Please choose a role", Toast.LENGTH_SHORT).show();
+                } else {
+                    SharedPreferences prefs = getActivity().getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
+                    prefs.edit().putInt(FinalsClass.ROLE_TYPE, index);
+                    prefs.edit().commit();
 
-                getActivity().startActivity(new Intent(getActivity(), Register.class));
-                getActivity().finish();
-                RegisterAs.this.dismiss();
+                    getActivity().startActivity(new Intent(getActivity(), Register.class));
+                    getActivity().finish();
+                    RegisterAs.this.dismiss();
+                }
 
             }
         });
         //if index is 0 => Benefactor, 1 => Beneficiary
-        return v;
+        return view;
     }
 
     public static void setSize(Activity act, DialogFragment dialog) {
