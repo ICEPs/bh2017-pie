@@ -21,4 +21,11 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string-array name="urgency_levels">
+        <item>4 (low urgency)</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1 (high urgency)</item>
+    </string-array>
 </resources>

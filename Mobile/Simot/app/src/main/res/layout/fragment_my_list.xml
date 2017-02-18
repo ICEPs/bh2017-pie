@@ -1,9 +1,18 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     tools:context="pie.simot.tabbedfragments.MyListFragment">
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@android:color/transparent"
+        app:srcCompat="@mipmap/ic_add_white_24dp" />
 
 
     <ListView
@@ -14,4 +23,6 @@
         android:dividerHeight="0dp"
         android:id="@+id/myListView"
         android:layout_weight="1" />
-</LinearLayout>
+
+
+</FrameLayout>
