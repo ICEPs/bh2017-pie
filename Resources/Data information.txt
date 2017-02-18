@@ -1,0 +1,34 @@
+Information Needed 
+
+DONATOR--
+	- company name
+	- password
+	- address
+	- representative name
+	- representative contact info
+	- company description
+
+DONATEE--
+	- organization name
+	- password
+	- address
+	- representative name
+	- representative contact info
+	- organization description
+	
+CALL FOR DONATIONS-- (provided by the DONATEE)
+	- message body
+	- organization name
+	- urgency level
+	
+ITEM-- (provided by DONATOR)
+	- item name
+	- item description
+	- company name
+	
+TRANSACTION OBJECT
+	- ITEM donated
+	- CALL FOR DONATION that was answered
+	- organization name
+	- company name
+	
