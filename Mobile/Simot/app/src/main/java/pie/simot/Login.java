@@ -3,6 +3,7 @@ package pie.simot;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -58,16 +59,18 @@ public class Login extends AppCompatActivity{
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressBar pb = (ProgressBar) findViewById(R.id.login_progress);
-                pb.setVisibility(View.VISIBLE);
+                //after authenticating
+                Login.this.startActivity(new Intent(Login.this, Dashboard.class));
+                Login.this.finish();
             }
         });
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterAs ask = RegisterAs.newInstance();
-                ask.setSize(Login.this, ask);
+                RegisterAs ask = new RegisterAs();
+//                RegisterAs.setSize(Login.this, ask);
                 ask.show(getSupportFragmentManager(), "ask_role");
+
             }
         });
 
