@@ -21,6 +21,7 @@ GET /donations/:donation_id
     message (string)
     organization_name (string)
     urgency (int)
+    post_author
 
 GET /donations
 - Returns list of donation objects
@@ -30,6 +31,7 @@ POST /donations
   message (string)
   organization_name (string)
   urgency (int)
+    post_author
 
 DELETE /donations/:donation_id
 
@@ -42,6 +44,7 @@ GET /items
     item_description
     company_name
     urgency (int)
+    post_author
 
 GET /items/:id
   - Returns:
@@ -50,6 +53,7 @@ GET /items/:id
     item_description
     company_name
     urgency (int)
+    post_author
 
 POST /items
   - Parameters
@@ -57,6 +61,7 @@ POST /items
     item_description
     company_name
     urgency (int)
+    post_author
 
 ## Transaction Endpoints
 
@@ -66,6 +71,7 @@ GET /transactions
     donation_id
     organization_id
     company_id
+    status
 
 GET /transactions/:id
   - Returns
@@ -73,6 +79,7 @@ GET /transactions/:id
     donation_id
     organization_id
     company_id
+    status
 
 POST /transactions
   - Parameters
@@ -85,6 +92,7 @@ POST /transactions
     donation_id
     organization_id
     company_id
+    status
 
 ## Authentication Endpoints
 
