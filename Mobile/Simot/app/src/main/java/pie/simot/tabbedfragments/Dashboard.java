@@ -1,6 +1,8 @@
 package pie.simot.tabbedfragments;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,6 +13,8 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import pie.simot.FinalsClass;
 import pie.simot.R;
@@ -31,6 +35,14 @@ public class Dashboard extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences(FinalsClass.PREFS_NAME, MODE_PRIVATE);
         roleType = prefs.getInt(FinalsClass.ROLE_TYPE, -1);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#303F9F")); //colorPrimaryDark
+        }
+
+//        Window.setStatusBarColor(Color.parseColor("#303F9F")); //colorPrimaryDark
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
