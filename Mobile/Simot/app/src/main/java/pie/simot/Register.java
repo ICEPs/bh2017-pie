@@ -2,6 +2,8 @@ package pie.simot;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +14,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
-public class Register extends AppCompatActivity {
+public class Register extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks{
 
     String orgName, password, confirmPassword, address, repName, contactInfo, orgDesc;
     private PlaceAutoCompleteAdapter mAdapter;
@@ -51,6 +55,14 @@ public class Register extends AppCompatActivity {
         repName = repNameT.getText().toString();
         contactInfo = contactInfoT.getText().toString();
         orgDesc = orgDescT.getText().toString();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        MapsInitializer.initialize(this);
+        mGoogleApiClient.connect();
 
         mAdapter = new PlaceAutoCompleteAdapter(this, android.R.layout.simple_list_item_1,
                 mGoogleApiClient, BOUNDS_JAMAICA, null);
@@ -126,6 +138,21 @@ public class Register extends AppCompatActivity {
         String[] part1 = LatLng.split("\\(");
         String part2[] = part1[1].split("\\)");
         return part2[0];
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
 
