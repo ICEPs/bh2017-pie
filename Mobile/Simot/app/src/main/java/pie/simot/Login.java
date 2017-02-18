@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,6 +55,13 @@ public class Login extends AppCompatActivity{
         Button loginButton = (Button)findViewById(R.id.loginButton);
         Button registerButton = (Button)findViewById(R.id.registerButton);
 
+        loginButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressBar pb = (ProgressBar) findViewById(R.id.login_progress);
+                pb.setVisibility(View.VISIBLE);
+            }
+        });
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,6 +3,7 @@ package pie.simot;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -26,16 +27,20 @@ public class RegisterAs extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_register_as, container, false);
-        RadioGroup chooseType = (RadioGroup) v.findViewById(R.id.chooseType);
-        int index = chooseType.indexOfChild(v.findViewById(chooseType.getCheckedRadioButtonId()));
-        SharedPreferences prefs = getActivity().getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
-        prefs.edit().putInt(FinalsClass.ROLE_TYPE, index);
-        prefs.edit().commit();
 
-        ((Button)v.findViewById(R.id.doneButton)).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.doneButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                RadioGroup chooseType = (RadioGroup) v.findViewById(R.id.chooseType);
+                int index = chooseType.indexOfChild(v.findViewById(chooseType.getCheckedRadioButtonId()));
+                SharedPreferences prefs = getActivity().getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
+                prefs.edit().putInt(FinalsClass.ROLE_TYPE, index);
+                prefs.edit().commit();
+
+                getActivity().startActivity(new Intent(getActivity(), Register.class));
+                getActivity().finish();
+                RegisterAs.this.dismiss();
+
             }
         });
         //if index is 0 => Benefactor, 1 => Beneficiary
