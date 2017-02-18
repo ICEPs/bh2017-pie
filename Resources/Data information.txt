@@ -24,6 +24,7 @@ CALL FOR DONATIONS-- (provided by the DONATEE)
 ITEM-- (provided by DONATOR)
 	- item name
 	- item description
+	- urgency level
 	- company name
 	
 TRANSACTION OBJECT
