@@ -40,8 +40,29 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class Login extends AppCompatActivity{
 
 
+    private String username, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        EditText usernameInput = (EditText)findViewById(R.id.username);
+        EditText passwordInput = (EditText)findViewById(R.id.password);
+
+        username = usernameInput.getText().toString();
+        password = passwordInput.getText().toString();
+        Button loginButton = (Button)findViewById(R.id.loginButton);
+        Button registerButton = (Button)findViewById(R.id.registerButton);
+
+        registerButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterAs ask = RegisterAs.newInstance();
+                ask.setSize(Login.this, ask);
+                ask.show(getSupportFragmentManager(), "ask_role");
+            }
+        });
+
     }
 }
 
