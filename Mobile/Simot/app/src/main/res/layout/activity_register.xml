@@ -38,7 +38,7 @@
         android:layout_height="38dp"
         android:background="@drawable/edittext_box"
         android:layout_marginBottom="10dp"/>
-    <EditText
+    <AutoCompleteTextView
         android:layout_below="@id/confirmPassword"
         android:layout_width="match_parent"
         android:paddingStart="10dp"
