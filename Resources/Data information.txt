@@ -29,7 +29,13 @@ ITEM-- (provided by DONATOR)
 	
 TRANSACTION OBJECT
 	- ITEM donated
-	- CALL FOR DONATION that was answered
-	- organization name
-	- company name
+	- benefactor name
+	- beneficiary name
+	- representative name (benefactor)
+	- representative name (beneficiary)
+	- representative contact info (benefactor)
+	- representative contact info (beneficiary)
+	- date reserved
+	- pick-up date
+	- pick-up venue
 	
