@@ -70,7 +70,7 @@ class DonationsController < ApplicationController
     end
 
     def get_by_urgency
-      Donations.order(:urgency)
+      Dojations.order(:urgency)
     end
 
 end
