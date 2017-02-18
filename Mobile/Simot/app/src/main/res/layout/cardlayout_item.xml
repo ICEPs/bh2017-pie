@@ -20,17 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="10dp"
         >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:layout_margin="16dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:padding="10dp"
+            android:layout_marginBottom="10dp"
             android:weightSum="30">
             <TextView
                 android:layout_width="wrap_content"
@@ -38,11 +36,13 @@
                 android:id="@+id/nameOfItem"
                 android:textColor="#000000"
                 android:layout_weight="10"
+                android:textSize="@dimen/subheading3"
                 android:text="ITEM NAME"/>
             <TextView
                 android:layout_weight="10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/subheading3"
                 android:text="from"/>
             <TextView
                 android:layout_weight="10"
@@ -51,19 +51,46 @@
                 android:id="@+id/nameOfBenefactor"
                 android:textColor="#000000"
                 android:text="BENEFACTOR"
+                android:textSize="@dimen/subheading3"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="URGENCY LEVEL: "
+                android:textSize="@dimen/subheading1"
+                android:textColor="@color/colorPrimary"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/subheading1"
+                android:textColor="@color/colorPrimary"
+                android:text="4"
+                android:id="@+id/itemUrgency"
                 />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/lorem"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="RESERVE"/>
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:background="@drawable/bg_button"-->
+            <!--android:textColor="@color/headerTextColor"-->
+            <!--android:text="RESERVE"/>-->
 
 
     </LinearLayout>
