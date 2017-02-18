@@ -117,6 +117,7 @@ public class Register extends AppCompatActivity implements GoogleApiClient.OnCon
                 if(password.equals(confirmPassword)){
                     SharedPreferences prefs = getSharedPreferences(FinalsClass.PREFS_NAME, MODE_PRIVATE);
                     SharedPreferences.Editor edit = prefs.edit();
+                    edit.putString(FinalsClass.LATLNG, LIST_OF_LATLNG_QUERY);
                     edit.putString(FinalsClass.ORG_NAME, orgName);
                     edit.putString(FinalsClass.PASSWORD, password);
                     edit.putString(FinalsClass.ADDRESS, address);

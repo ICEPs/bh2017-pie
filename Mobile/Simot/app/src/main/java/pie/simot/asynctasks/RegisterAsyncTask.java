@@ -3,26 +3,28 @@ package pie.simot.asynctasks;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 import pie.simot.CheckInternet;
 
@@ -30,18 +32,22 @@ import pie.simot.CheckInternet;
  * Created by elysi on 2/18/2017.
  */
 
-public class LoginAsync extends AsyncTask<Void, Void, String>{
-    private String username, password;
+public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
+    private String latlng, orgName, password, address, repName, contactInfo, orgDesc;
     private Context c;
-    private String loginLink = "http://utotcatalog.technotrekinc.com/z_login.php";
-    //sample http://utotcatalog.technotrekinc.com/z_login.php?email=elysiajelenavilladarez@yahoo.com&password=luffy1
+    private String registerLink = "http://utotcatalog.technotrekinc.com/z_registration.php";
     private static ProgressDialog progressDialog;
     private Activity act;
 
-    public LoginAsync(Context c, Activity act, String username, String password) {
-        this.username = username;
+    public RegisterAsyncTask(Context c, Activity act, String latlng, String orgName, String password,
+                             String address, String repName, String contactInfo, String orgDesc) {
+        this.latlng = latlng;
+        this.orgName = orgName;
         this.password = password;
-        this.c = c;
+        this.address = address;
+        this.repName = repName;
+        this.contactInfo = contactInfo;
+        this.orgDesc = orgDesc;
         this.act = act;
         this.progressDialog = new ProgressDialog(c);
     }
@@ -50,7 +56,8 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
     protected void onPreExecute() {
         progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        progressDialog.setTitle("Signing in . . .");
+        progressDialog.setTitle("Creating account . . .");
+        progressDialog.setMessage("Please make sure you have a stable internet connection");
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
@@ -58,22 +65,36 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
 
     @Override
     protected String doInBackground(Void... params) {
-        if(CheckInternet.hasActiveInternetConnection(act)) {
-            loginLink += "?email=" + username + "&password=" + password;
+        if (CheckInternet.hasActiveInternetConnection(act)) {
+            List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+            urlParameters.add(new BasicNameValuePair("fbId", latlng));
+            urlParameters.add(new BasicNameValuePair("email", orgName));
+            urlParameters.add(new BasicNameValuePair("password", password));
+            urlParameters.add(new BasicNameValuePair("fname", address));
+            urlParameters.add(new BasicNameValuePair("lname", repName));
+            urlParameters.add(new BasicNameValuePair("lname", contactInfo));
+            urlParameters.add(new BasicNameValuePair("lname", orgDesc));
+//        urlParameters.add(new BasicNameValuePair("deviceToken", "12345"));
 
             HttpClient client = new DefaultHttpClient();
-            HttpGet request = new HttpGet();
+            HttpPost post = new HttpPost();
             HttpResponse response;
             String json;
             JSONObject req = null;
             String success = "";
 
             try {
-                request.setURI(new URI(loginLink));
-                response = client.execute(request);
+                post.setURI(new URI(registerLink));
+                post.setEntity(new UrlEncodedFormEntity(urlParameters));
+                response = client.execute(post);
                 json = EntityUtils.toString(response.getEntity());
                 req = new JSONObject(json);
                 success = req.getString("result");
+
+
+                if (success.equals("success")) {
+
+                }
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             } catch (ClientProtocolException e) {
@@ -83,35 +104,10 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            if (success.equals("success")) {
-                try {
-                    JSONArray alarm_list = req.getJSONArray("alarm_list");
-                    for (int i = 0; i < alarm_list.length(); i++) {
-                        JSONObject alarm = alarm_list.getJSONObject(i);
-                    }
-
-                    JSONArray hugot_list = req.getJSONArray("hugot_list");
-                    for (int i = 0; i < hugot_list.length(); i++) {
-                        JSONObject poem = hugot_list.getJSONObject(i);
-                    }
-
-                    JSONArray localhugot_list = req.getJSONArray("localhugot_list");
-                    for (int i = 0; i < localhugot_list.length(); i++) {
-
-                    }
-//
-//                System.out.println("CHECK: POEM ASYNC" + Realm.getDefaultInstance().where(Poem.class).count());
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
             return success;
-        } else return "";
+        } else {
+            return "";
+        }
     }
 
     @Override
@@ -119,15 +115,16 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
         if (progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
-        if(result.equals("success")){
-            Toast.makeText(act, "Successfully logged in!", Toast.LENGTH_SHORT).show();
+        if (result.equals("success")) {
+
 //            Intent next = new Intent(act, LoginSplashScreen.class);
 //            next.putExtra(FinalVariables.EMAIL, username);
 //            act.startActivity(next);
 //            act.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 //            act.finish();
-        } else if(result.trim().isEmpty()){
-        } else{
+        } else if (result.trim().isEmpty()) {
+        } else {
+
         }
 
     }
