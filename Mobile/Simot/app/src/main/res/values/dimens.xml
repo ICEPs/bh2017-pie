@@ -4,4 +4,22 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+
+    <!--android material design typography-->
+    <dimen name="display2">45sp</dimen>
+    <dimen name="display1">34sp</dimen>
+    <dimen name="headline2">30sp</dimen>
+    <dimen name="headline">24sp</dimen>
+    <dimen name="subheading4">20sp</dimen>
+    <dimen name="subheading3">18sp</dimen>
+    <dimen name="subheading2">16sp</dimen>
+    <dimen name="subheading1">15sp</dimen>
+    <dimen name="body2">14sp</dimen>
+    <dimen name="body1">13sp</dimen>
+    <dimen name="body">12sp</dimen>
+
+    <dimen name="list_item_padding">15dp</dimen>
+    <dimen name="editText_height">38dp</dimen>
+
+    <dimen name="editText_padding">7dp</dimen>
 </resources>
