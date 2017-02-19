@@ -13,6 +13,8 @@ class ItemsController < ApplicationController
         render json: get_by_company_name
       when "urgency"
         render json: get_by_urgency
+      when "post_author"
+        render json: get_by_author
       end
     else
       render json: @items
@@ -78,6 +80,10 @@ class ItemsController < ApplicationController
 
     def get_by_urgency
       Item.order(:urgency)
+    end
+
+    def get_by_author
+      Donations.order(:post_author_id)
     end
 
 end

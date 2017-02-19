@@ -13,6 +13,8 @@ class DonationsController < ApplicationController
         render json: get_by_organization_name
       when "urgency"
         render json: get_by_urgency
+      when "post_author"
+        render json: get_by_author
       end
     else
       render json: @donations
@@ -76,6 +78,10 @@ class DonationsController < ApplicationController
 
     def get_by_urgency
       Donations.order(:urgency)
+    end
+
+    def get_by_author
+      Donations.order(:post_author_id)
     end
 
 end
