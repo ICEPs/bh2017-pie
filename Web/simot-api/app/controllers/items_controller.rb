@@ -83,7 +83,7 @@ class ItemsController < ApplicationController
     end
 
     def get_by_author
-      Donations.order(:post_author_id)
+      Item.order(:post_author_id)
     end
 
 end
