@@ -1,4 +1,4 @@
-package pie.simot.user;
+package pie.simot;
 
 /**
  * Created by Joel on 28/06/2015.

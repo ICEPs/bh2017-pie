@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+
 import pie.simot.FinalsClass;
 import pie.simot.R;
 
@@ -24,7 +26,7 @@ public class Dashboard extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-
+    private ArrayList<Object> ob;
     private ViewPager mViewPager;
     private int roleType;
 
@@ -41,6 +43,7 @@ public class Dashboard extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.parseColor("#303F9F")); //colorPrimaryDark
         }
+
 
 //        Window.setStatusBarColor(Color.parseColor("#303F9F")); //colorPrimaryDark
 

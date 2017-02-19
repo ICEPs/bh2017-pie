@@ -24,7 +24,7 @@ android:background="@color/colorPrimary">
     android:overScrollMode="ifContentScrolls"
     android:scrollbarStyle="insideInset"
     android:layout_width="match_parent"
-    tools:context="pie.simot.user.Register">
+    tools:context="pie.simot.Register">
 
     <LinearLayout android:id="@+id/activity_register"
     android:layout_width="match_parent"
@@ -58,6 +58,7 @@ android:background="@color/colorPrimary">
         android:paddingStart="10dp"
         android:padding="5dp"
         android:id="@+id/password"
+        android:inputType="textPassword"
         android:layout_height="@dimen/editText_height"
         android:layout_marginBottom="@dimen/editText_padding"/>
 
@@ -69,6 +70,7 @@ android:background="@color/colorPrimary">
     <EditText
         android:layout_below="@id/password"
         android:layout_width="match_parent"
+        android:inputType="textPassword"
         android:paddingStart="10dp"
         android:padding="5dp"
         android:id="@+id/confirmPassword"

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import pie.simot.FinalsClass;
 import pie.simot.R;
+import pie.simot.Register;
 
 public class RegisterAs extends DialogFragment {
 

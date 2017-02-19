@@ -4,6 +4,7 @@
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".user.Register"
+            android:name=".Register"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".tabbedfragments.Dashboard" />
         <activity android:name=".adding.AddCall" />

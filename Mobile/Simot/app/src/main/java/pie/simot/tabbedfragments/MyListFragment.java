@@ -1,6 +1,8 @@
 package pie.simot.tabbedfragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 
 import pie.simot.FinalsClass;
 import pie.simot.R;
+import pie.simot.adding.AddCall;
+import pie.simot.adding.AddItem;
 import pie.simot.benefactorpart.Item;
 import pie.simot.benefactorpart.ItemPostAdapter;
 import pie.simot.beneficiarypart.Call;
@@ -53,9 +57,10 @@ public class MyListFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_my_list, container, false);
         int roleType = getArguments().getInt(FinalsClass.ROLE_TYPE);
         ListView listView = (ListView)view.findViewById(R.id.myListView);
-        Button add = (Button)view.findViewById(R.id.add);
+        FloatingActionButton add = (FloatingActionButton)view.findViewById(R.id.add);
 
         if(roleType == 0){
+//            i = getActivity().getIntent().getParcelableArrayListExtra(FinalsClass.PARCEITE);
             i = new ArrayList<>();
             i.add(new Item());
             i.add(new Item());
@@ -83,19 +88,21 @@ public class MyListFragment extends Fragment {
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    startActivity(new Intent(getActivity(), AddItem.class));
+                    getActivity().finish();
                 }
             });
         } else if(roleType==1){
-            c = new ArrayList<>();
-            c.add(new Call());
-            c.add(new Call());
-            c.add(new Call());
-            c.add(new Call());
-            c.add(new Call());
-            c.add(new Call());
-            c.add(new Call());
-            c.add(new Call());
+            c = getActivity().getIntent().getParcelableArrayListExtra(FinalsClass.PARCEDON);
+//            c = new ArrayList<>();
+//            c.add(new Call());
+//            c.add(new Call());
+//            c.add(new Call());
+//            c.add(new Call());
+//            c.add(new Call());
+//            c.add(new Call());
+//            c.add(new Call());
+//            c.add(new Call());
 
             CallByDonAdapter cbd = new CallByDonAdapter(getContext(), c);
             listView.setAdapter(cbd);
@@ -111,7 +118,8 @@ public class MyListFragment extends Fragment {
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    startActivity(new Intent(getActivity(), AddCall.class));
+                    getActivity().finish();
                 }
             });
         }else{

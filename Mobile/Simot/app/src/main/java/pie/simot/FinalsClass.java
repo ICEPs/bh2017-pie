@@ -21,4 +21,10 @@ public class FinalsClass {
 
     //for security token
     public static final String AUTHTOKEN = "TOKEN";
+    public static final String USERID = "USERID";
+
+    //for arraylist
+
+    public static final String PARCEDON = "PARCEDON";
+    public static final String PARCEITE = "PARCEITE";
 }

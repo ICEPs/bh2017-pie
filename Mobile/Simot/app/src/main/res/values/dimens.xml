@@ -19,7 +19,7 @@
     <dimen name="body">12sp</dimen>
 
     <dimen name="list_item_padding">15dp</dimen>
-    <dimen name="editText_height">34dp</dimen>
+    <dimen name="editText_height">38dp</dimen>
 
     <dimen name="editText_padding">7dp</dimen>
 </resources>

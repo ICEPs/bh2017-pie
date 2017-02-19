@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import pie.simot.asynctasks.LoginAsync;
 import pie.simot.tabbedfragments.Dashboard;
 import pie.simot.R;
 
@@ -24,20 +25,20 @@ public class Login extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        EditText usernameInput = (EditText)findViewById(R.id.username);
-        EditText passwordInput = (EditText)findViewById(R.id.password);
+        final EditText usernameInput = (EditText)findViewById(R.id.username);
+        final EditText passwordInput = (EditText)findViewById(R.id.password);
 
-        username = usernameInput.getText().toString();
-        password = passwordInput.getText().toString();
         Button loginButton = (Button)findViewById(R.id.loginButton);
         Button registerButton = (Button)findViewById(R.id.registerButton);
 
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //after authenticating
-                Login.this.startActivity(new Intent(Login.this, Dashboard.class));
-                Login.this.finish();
+                username = usernameInput.getText().toString();
+                password = passwordInput.getText().toString();
+
+                LoginAsync la = new LoginAsync(Login.this.getBaseContext(), Login.this, username, password);
+                la.execute();
             }
         });
         registerButton.setOnClickListener(new OnClickListener() {

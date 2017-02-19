@@ -1,17 +1,40 @@
 package pie.simot.beneficiarypart;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
  * Created by elysi on 2/18/2017.
  */
 
-public class Call {
+public class Call implements Parcelable{
     private String postTitle;
     private String messageBody;
     private String orgName;
     private int urgencyLevel;
     private Date createdDate;
+
+    public Call(){}
+    protected Call(Parcel in) {
+        postTitle = in.readString();
+        messageBody = in.readString();
+        orgName = in.readString();
+        urgencyLevel = in.readInt();
+    }
+
+    public static final Creator<Call> CREATOR = new Creator<Call>() {
+        @Override
+        public Call createFromParcel(Parcel in) {
+            return new Call(in);
+        }
+
+        @Override
+        public Call[] newArray(int size) {
+            return new Call[size];
+        }
+    };
 
     public String getPostTitle() {
         return postTitle;
@@ -51,5 +74,18 @@ public class Call {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(postTitle);
+        dest.writeString(messageBody);
+        dest.writeString(orgName);
+        dest.writeInt(urgencyLevel);
     }
 }

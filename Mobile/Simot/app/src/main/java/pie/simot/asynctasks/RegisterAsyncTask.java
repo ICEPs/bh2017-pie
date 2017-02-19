@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pie.simot.CheckInternet;
+import pie.simot.FinalsClass;
 import pie.simot.tabbedfragments.Dashboard;
 
 /**
@@ -35,9 +37,9 @@ import pie.simot.tabbedfragments.Dashboard;
  */
 
 public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
-    private String latlng, orgName, password, address, repName, contactInfo, orgDesc;
+    private String latlng, orgName, password, address, repName, contactInfo, orgDesc, type;
     private Context c;
-    private String registerLink = "http://utotcatalog.technotrekinc.com/z_registration.php";
+    private String registerLink = "http://e60a750c.ngrok.io/users";
     private static ProgressDialog progressDialog;
     private Activity act;
 
@@ -50,6 +52,13 @@ public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
         this.repName = repName;
         this.contactInfo = contactInfo;
         this.orgDesc = orgDesc;
+        SharedPreferences prefs = c.getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
+        int roleType = prefs.getInt(FinalsClass.ROLE_TYPE, -1);
+        if(roleType == 0){
+            type = "donator";
+        } else{
+            type = "donatee";
+        }
         this.act = act;
         this.progressDialog = new ProgressDialog(c);
     }
@@ -69,13 +78,13 @@ public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
         if (CheckInternet.hasActiveInternetConnection(act)) {
             List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-            urlParameters.add(new BasicNameValuePair("fbId", latlng));
-            urlParameters.add(new BasicNameValuePair("email", orgName));
+            urlParameters.add(new BasicNameValuePair("company_name", orgName));
             urlParameters.add(new BasicNameValuePair("password", password));
-            urlParameters.add(new BasicNameValuePair("fname", address));
-            urlParameters.add(new BasicNameValuePair("lname", repName));
-            urlParameters.add(new BasicNameValuePair("lname", contactInfo));
-            urlParameters.add(new BasicNameValuePair("lname", orgDesc));
+            urlParameters.add(new BasicNameValuePair("address", address));
+            urlParameters.add(new BasicNameValuePair("representative_name", repName));
+            urlParameters.add(new BasicNameValuePair("company_description", orgDesc));
+            urlParameters.add(new BasicNameValuePair("representative_contact_info", contactInfo));
+            urlParameters.add(new BasicNameValuePair("type", type));
 //        urlParameters.add(new BasicNameValuePair("deviceToken", "12345"));
 
             HttpClient client = new DefaultHttpClient();
@@ -91,10 +100,10 @@ public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
                 response = client.execute(post);
                 json = EntityUtils.toString(response.getEntity());
                 req = new JSONObject(json);
-                success = req.getString("result");
+                success = req.getString("user_id");
 
 
-                if (success.equals("success")) {
+                if (success!=null) {
 
                 }
             } catch (URISyntaxException e) {
@@ -117,13 +126,17 @@ public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
         if (progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
-        if (result.equals("success")) {
+        if (!result.isEmpty()) {
 
-            Intent next = new Intent(act, Dashboard.class);
-//            next.putExtra(FinalVariables.EMAIL, username);
-            act.startActivity(next);
-            act.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            act.finish();
+            SharedPreferences prefs = act.getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
+            int roleType = prefs.getInt(FinalsClass.ROLE_TYPE, 0);
+            if(roleType == 0) {
+                GetAllCallsTask gat = new GetAllCallsTask(c, act);
+                gat.execute();
+            } else{
+//                GetAllItemsTask gat = new GetAllItemsTask(c, act);
+//                gat.execute();
+            }
         } else if (result.trim().isEmpty()) {
         } else {
 
