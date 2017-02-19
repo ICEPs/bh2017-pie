@@ -3,6 +3,7 @@ package pie.simot.asynctasks;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pie.simot.CheckInternet;
+import pie.simot.tabbedfragments.Dashboard;
 
 /**
  * Created by elysi on 2/18/2017.
@@ -117,11 +119,11 @@ public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
         }
         if (result.equals("success")) {
 
-//            Intent next = new Intent(act, LoginSplashScreen.class);
+            Intent next = new Intent(act, Dashboard.class);
 //            next.putExtra(FinalVariables.EMAIL, username);
-//            act.startActivity(next);
-//            act.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//            act.finish();
+            act.startActivity(next);
+            act.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            act.finish();
         } else if (result.trim().isEmpty()) {
         } else {
 

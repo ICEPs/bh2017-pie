@@ -59,7 +59,7 @@ public class Dashboard extends AppCompatActivity {
 
         tabLayout.getTabAt(1).setIcon(R.mipmap.ic_view_list_white_24dp);
         tabLayout.getTabAt(0).setIcon(R.mipmap.ic_home_white_24dp);
-        tabLayout.getTabAt(2).setIcon(R.mipmap.ic_contact_phone_white_24dp);
+        tabLayout.getTabAt(2).setIcon(R.mipmap.ic_forum_white_24dp);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

@@ -25,6 +25,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import pie.simot.CheckInternet;
+import pie.simot.tabbedfragments.Dashboard;
 
 /**
  * Created by elysi on 2/18/2017.
@@ -121,11 +122,11 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
         }
         if(result.equals("success")){
             Toast.makeText(act, "Successfully logged in!", Toast.LENGTH_SHORT).show();
-//            Intent next = new Intent(act, LoginSplashScreen.class);
+            Intent next = new Intent(act, Dashboard.class);
 //            next.putExtra(FinalVariables.EMAIL, username);
-//            act.startActivity(next);
-//            act.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//            act.finish();
+            act.startActivity(next);
+            act.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            act.finish();
         } else if(result.trim().isEmpty()){
         } else{
         }

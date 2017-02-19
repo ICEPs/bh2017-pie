@@ -34,6 +34,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".tabbedfragments.Dashboard" />
         <activity android:name=".MessagingActivity"></activity>
+        <activity android:name=".adding.AddCall" />
+        <activity android:name=".adding.AddItem"></activity>
     </application>
 
 </manifest>

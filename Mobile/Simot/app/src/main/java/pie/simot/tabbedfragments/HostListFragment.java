@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +19,11 @@ import pie.simot.beneficiarypart.Call;
 import pie.simot.beneficiarypart.CallByDonAdapter;
 
 public class HostListFragment extends Fragment {
+    public static Item item;
+    public static Call call;
+
+    private ArrayList<Item> i;
+    private  ArrayList<Call> c;
 
     public HostListFragment() {
         // Required empty public constructor
@@ -46,7 +52,7 @@ public class HostListFragment extends Fragment {
         int roleType = getArguments().getInt(FinalsClass.ROLE_TYPE);
         ListView listView = (ListView)view.findViewById(R.id.hostListView);
         if(roleType == 0){
-            ArrayList<Call> c = new ArrayList<>();
+            c = new ArrayList<>();
             c.add(new Call());
             c.add(new Call());
             c.add(new Call());
@@ -60,8 +66,18 @@ public class HostListFragment extends Fragment {
             listView.setAdapter(cbd);
             cbd.notifyDataSetChanged();
 
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    call = c.get(position);
+                    ItemClicked clicked = new ItemClicked();
+                    clicked.show(getActivity().getSupportFragmentManager(), "call_clicked");
+                }
+            });
+
+
         } else if(roleType == 1){
-            ArrayList<Item> i = new ArrayList<>();
+            i = new ArrayList<>();
             i.add(new Item());
             i.add(new Item());
             i.add(new Item());
@@ -75,6 +91,15 @@ public class HostListFragment extends Fragment {
             ItemPostAdapter ita = new ItemPostAdapter(getContext(), i);
             listView.setAdapter(ita);
             ita.notifyDataSetChanged();
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    item = i.get(position);
+                    ItemClicked clicked = new ItemClicked();
+                    clicked.show(getActivity().getSupportFragmentManager(), "item_clicked");
+                }
+            });
         } else{
             Toast.makeText(getContext(), "RoleType: " + roleType, Toast.LENGTH_SHORT).show();
         }
