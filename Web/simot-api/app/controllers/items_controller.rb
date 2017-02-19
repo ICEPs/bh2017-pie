@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Deliverable.find(params[:id])
+    @item = Item.find(params[:id])
 
     if @item.update(item_params)
       head :no_content
