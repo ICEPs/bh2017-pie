@@ -29,7 +29,16 @@ public class ItemPostAdapter extends ArrayAdapter<Item> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.cardlayout_item, parent, false);
         }
         TextView itemName = (TextView)convertView.findViewById(R.id.nameOfItem);
-        itemName.setText("MY HEART!!!");
+        TextView benefactor = (TextView)convertView.findViewById(R.id.nameOfBenefactor);
+        TextView urgency = (TextView)convertView.findViewById(R.id.itemUrgency);
+        TextView description = (TextView)convertView.findViewById(R.id.itemDescription);
+
+        itemName.setText(item.getItems());
+        benefactor.setText(item.getCompanyName());
+        urgency.setText(item.getUrgencyLevel());
+        description.setText(item.getItemDesc());
+
+
         return convertView;
     }
 }

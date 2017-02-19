@@ -96,7 +96,7 @@
             android:background="@drawable/bg_button"
             android:layout_marginBottom="10dp"
             android:textColor="@color/headerTextColor"
-            android:id="@+id/deleteButton"
+            android:id="@+id/send"
             android:text="SEND"/>
 
         <Button
@@ -107,7 +107,7 @@
             android:layout_marginLeft="16dp"
             android:background="@drawable/bg_button_red"
             android:textColor="@color/headerTextColor"
-            android:id="@+id/reserveButton"
+            android:id="@+id/cancel"
             android:text="CANCEL"/>
     </LinearLayout>
 

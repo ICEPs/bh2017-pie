@@ -29,7 +29,13 @@ public class CallByDonAdapter extends ArrayAdapter<Call> {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.cardlayout_call_for_donation, parent, false);
             }
             TextView donCall = (TextView)convertView.findViewById(R.id.donationCall);
-            donCall.setText("HELP PLS!!!");
+            TextView beneficiary = (TextView)convertView.findViewById(R.id.nameOfBeneficiary);
+            TextView urgency = (TextView)convertView.findViewById(R.id.callUrgency);
+            TextView description = (TextView)convertView.findViewById(R.id.callDesc);
+            donCall.setText(call.getPostTitle());
+            beneficiary.setText(call.getOrgName());
+            urgency.setText(call.getUrgencyLevel());
+            description.setText(call.getMessageBody());
             return convertView;
         }
     }
