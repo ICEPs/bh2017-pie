@@ -39,7 +39,7 @@ import pie.simot.tabbedfragments.Dashboard;
 public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
     private String latlng, orgName, password, address, repName, contactInfo, orgDesc, type;
     private Context c;
-    private String registerLink = "http://e60a750c.ngrok.io/users";
+    private String registerLink = "http://9653bc79.ngrok.io/users";
     private static ProgressDialog progressDialog;
     private Activity act;
 
@@ -104,7 +104,20 @@ public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
 
 
                 if (success!=null) {
-
+                    SharedPreferences prefs = act.getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit = prefs.edit();
+                    edit.putString(FinalsClass.AUTHTOKEN, new JSONObject().getString("auth_token"));
+                    edit.putString(FinalsClass.USERID, new JSONObject().getString("user_id"));
+                    edit.commit();
+                    int roleType;
+                    String role = new JSONObject().getString("type");
+                    if(role.equals("Benefactor")){
+                        roleType = 0;
+                    }else{
+                        roleType = 1;
+                    }
+                    edit.putInt(FinalsClass.ROLE_TYPE, roleType);
+//
                 }
             } catch (URISyntaxException e) {
                 e.printStackTrace();
@@ -130,12 +143,13 @@ public class RegisterAsyncTask extends AsyncTask<Void, Void, String> {
 
             SharedPreferences prefs = act.getSharedPreferences(FinalsClass.PREFS_NAME, Context.MODE_PRIVATE);
             int roleType = prefs.getInt(FinalsClass.ROLE_TYPE, 0);
+
             if(roleType == 0) {
                 GetAllCallsTask gat = new GetAllCallsTask(c, act);
                 gat.execute();
             } else{
-//                GetAllItemsTask gat = new GetAllItemsTask(c, act);
-//                gat.execute();
+                GetAllItemsTask gat = new GetAllItemsTask(c, act);
+                gat.execute();
             }
         } else if (result.trim().isEmpty()) {
         } else {

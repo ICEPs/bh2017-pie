@@ -35,7 +35,7 @@ import pie.simot.tabbedfragments.Dashboard;
 
 public class GetAllItemsTask extends AsyncTask<Void, Void, ArrayList<Item>> {
     private Context c;
-    private String donations = "http://e60a750c.ngrok.io/donations";
+    private String donations = "http://65fb3151.ngrok.io/items";
     //sample http://utotcatalog.technotrekinc.com/z_login.php?email=elysiajelenavilladarez@yahoo.com&password=luffy1
     private static ProgressDialog progressDialog;
     private Activity act;
@@ -68,7 +68,7 @@ public class GetAllItemsTask extends AsyncTask<Void, Void, ArrayList<Item>> {
             HttpClient client = new DefaultHttpClient();
 
             HttpGet request = new HttpGet();
-            request.setHeader("authorization", auth);
+            request.setHeader("Authorization", auth);
             HttpResponse response;
             String json;
             JSONArray req = null;
@@ -93,9 +93,11 @@ public class GetAllItemsTask extends AsyncTask<Void, Void, ArrayList<Item>> {
                 try {
                     for (int i = 0; i < req.length(); i++) {
                         JSONObject d = req.getJSONObject(i);
-                        Item call = new Item();
-
-                        c.add(call);
+                        Item item = new Item();
+                        item.setCompanyName(d.getString("company_name"));
+                        item.setItems(d.getString("item_name"));
+                        item.setItemDesc(d.getString("item_description"));
+                        c.add(item);
                     }
 //
 //                System.out.println("CHECK: POEM ASYNC" + Realm.getDefaultInstance().where(Poem.class).count());

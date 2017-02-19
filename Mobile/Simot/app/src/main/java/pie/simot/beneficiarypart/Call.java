@@ -14,7 +14,6 @@ public class Call implements Parcelable{
     private String messageBody;
     private String orgName;
     private int urgencyLevel;
-    private Date createdDate;
 
     public Call(){}
     protected Call(Parcel in) {
@@ -68,13 +67,6 @@ public class Call implements Parcelable{
         this.urgencyLevel = urgencyLevel;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
 
     @Override
     public int describeContents() {

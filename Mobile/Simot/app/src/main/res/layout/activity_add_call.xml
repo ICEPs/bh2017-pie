@@ -84,6 +84,17 @@
         android:background="@drawable/bg_button"
         android:textColor="@color/headerTextColor"
         android:text="Create Post"
-        android:id="@+id/registerButton"
+        android:id="@+id/createPost"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:layout_below="@id/ur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        android:textColor="@color/headerTextColor"
+        android:text="Cancel"
+        android:id="@+id/cancel"
         />
 </LinearLayout>

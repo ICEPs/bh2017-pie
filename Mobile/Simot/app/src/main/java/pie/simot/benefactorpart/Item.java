@@ -14,16 +14,18 @@ public class Item implements Parcelable {
     private String items;
     private String companyName;
     private String itemDesc;
-    private Date expiryDate;
+    private String expiryDate;
 
     private int urgencyLevel;
     private Date createdDate;
 
     public Item(){}
+
     protected Item(Parcel in) {
         items = in.readString();
         companyName = in.readString();
         itemDesc = in.readString();
+        expiryDate = in.readString();
         urgencyLevel = in.readInt();
     }
 
@@ -63,11 +65,11 @@ public class Item implements Parcelable {
         this.itemDesc = itemDesc;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 

@@ -40,7 +40,7 @@ import pie.simot.tabbedfragments.Dashboard;
 
 public class GetAllCallsTask extends AsyncTask<Void, Void, ArrayList<Call>> {
     private Context c;
-    private String donations = "http://e60a750c.ngrok.io/donations";
+    private String donations = "http://65fb3151.ngrok.io/donations";
     //sample http://utotcatalog.technotrekinc.com/z_login.php?email=elysiajelenavilladarez@yahoo.com&password=luffy1
     private static ProgressDialog progressDialog;
     private Activity act;
@@ -73,7 +73,7 @@ public class GetAllCallsTask extends AsyncTask<Void, Void, ArrayList<Call>> {
             HttpClient client = new DefaultHttpClient();
 
             HttpGet request = new HttpGet();
-            request.setHeader("authorization", auth);
+            request.setHeader("Authorization", auth);
             HttpResponse response;
             String json;
             JSONArray req = null;

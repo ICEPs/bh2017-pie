@@ -42,7 +42,7 @@ import pie.simot.tabbedfragments.Dashboard;
 public class LoginAsync extends AsyncTask<Void, Void, String>{
     private String username, password;
     private Context c;
-    private String loginLink = "http://e60a750c.ngrok.io/authenticate";
+    private String loginLink = "http://65fb3151.ngrok.io/authenticate";
     //sample http://utotcatalog.technotrekinc.com/z_login.php?email=elysiajelenavilladarez@yahoo.com&password=luffy1
     private static ProgressDialog progressDialog;
     private Activity act;
@@ -76,7 +76,7 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
             HttpPost post = new HttpPost();
             HttpResponse response;
             String json;
-            JSONObject req = null;
+            JSONArray req = null;
             String success = "";
 
             try {
@@ -84,8 +84,8 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
                 post.setEntity(new UrlEncodedFormEntity(urlParameters));
                 response = client.execute(post);
                 json = EntityUtils.toString(response.getEntity());
-                req = new JSONObject(json);
-                success = req.getString("auth_token");
+                req = new JSONArray(json);
+                success = req.getJSONObject(0).getString("auth_token");
 
 
                 if (success!=null) {
@@ -101,6 +101,8 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
                         roleType = 1;
                     }
                     edit.putInt(FinalsClass.ROLE_TYPE, roleType);
+                    edit.commit();
+
 //
                 }
             } catch (URISyntaxException e) {
