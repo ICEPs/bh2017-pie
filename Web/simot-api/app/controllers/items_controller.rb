@@ -20,7 +20,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Deliverable.new(item_params)
+    @item = Item.new
+    @item.item_name = params[:item_name]
+    @item.item_description = params[:item_description]
+    @item.company_name = params[:company_name]
+    @item.urgency = params[:urgency]
+    @item.expiry_date = Time.at params[:expiry_date].to_f
+    @item.donation_title = params[:donation_title]
+    @item.post_author_id = params[:post_author_id]
 
     if @item.save
       render json: @item, status: :created, location: @item

@@ -2,7 +2,7 @@ class DonationsController < ApplicationController
   before_action :set_donations, only: [:show, :update, :destroy]
 
   def index
-    @donations = Donations.all
+    @donations = Donation.all
 
     if params[:filter]
       case params[:filter]
@@ -20,7 +20,12 @@ class DonationsController < ApplicationController
   end
 
   def create
-    @donation = Deliverable.new(donation_params)
+    @donation = Donation.new
+    @donation.message = params[:message]
+    @donation.organization_name = params[:organization_name]
+    @donation.urgency = params[:urgency]
+    @donation.post_author_id = params[:post_author_id]
+    @donation.donation_title = params[:donation_title]
 
     if @donation.save
       render json: @donation, status: :created, location: @donation
