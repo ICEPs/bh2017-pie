@@ -76,7 +76,7 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
             HttpPost post = new HttpPost();
             HttpResponse response;
             String json;
-            JSONArray req = null;
+            JSONObject req = null;
             String success = "";
 
             try {
@@ -84,8 +84,8 @@ public class LoginAsync extends AsyncTask<Void, Void, String>{
                 post.setEntity(new UrlEncodedFormEntity(urlParameters));
                 response = client.execute(post);
                 json = EntityUtils.toString(response.getEntity());
-                req = new JSONArray(json);
-                success = req.getJSONObject(0).getString("auth_token");
+                req = new JSONObject(json);
+                success = req.getString("auth_token");
 
 
                 if (success!=null) {

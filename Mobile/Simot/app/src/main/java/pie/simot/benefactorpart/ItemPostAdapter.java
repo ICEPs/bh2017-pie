@@ -29,7 +29,9 @@ public class ItemPostAdapter extends ArrayAdapter<Item> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.cardlayout_item, parent, false);
         }
         TextView itemName = (TextView)convertView.findViewById(R.id.nameOfItem);
-        itemName.setText("MY HEART!!!");
+        itemName.setText("Items");
+
+
         return convertView;
     }
 }

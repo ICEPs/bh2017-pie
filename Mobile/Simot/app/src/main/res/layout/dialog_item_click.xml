@@ -190,6 +190,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_button"
             android:textColor="@color/headerTextColor"
+            android:id="@+id/reserveButton"
             android:text="RESERVE"/>
     </LinearLayout>
 

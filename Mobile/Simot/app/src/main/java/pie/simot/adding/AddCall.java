@@ -2,7 +2,8 @@ package pie.simot.adding;
 
 
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+//import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 import java.util.Calendar;
 
 import pie.simot.R;
+import pie.simot.tabbedfragments.Dashboard;
+import pie.simot.user.Login;
 
 public class AddCall extends AppCompatActivity{
 
@@ -21,14 +24,14 @@ public class AddCall extends AppCompatActivity{
     private Spinner urgency;
 
     //    @Override
-//    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-//        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
-//        expiryDate.setText(date);
-//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_call);
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_add_call);
 //
 //        expiryDate = (Button)findViewById(R.id.expiryDate);
 //
@@ -71,6 +74,15 @@ public class AddCall extends AppCompatActivity{
 
                 }
 
+            }
+        });
+
+        (findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent next = new Intent(AddCall.this, Dashboard.class);
+                AddCall.this.startActivity(next);
+                finish();
             }
         });
 

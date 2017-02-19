@@ -28,4 +28,9 @@
         <item>2</item>
         <item>1 (high urgency)</item>
     </string-array>
+    <string-array name="sort">
+        <item>By name</item>
+        <item>By company name</item>
+        <item>By urgency</item>
+    </string-array>
 </resources>

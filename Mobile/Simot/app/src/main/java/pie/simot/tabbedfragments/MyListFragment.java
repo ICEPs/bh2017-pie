@@ -94,15 +94,15 @@ public class MyListFragment extends Fragment {
             });
         } else if(roleType==1){
             c = getActivity().getIntent().getParcelableArrayListExtra(FinalsClass.PARCEDON);
-//            c = new ArrayList<>();
-//            c.add(new Call());
-//            c.add(new Call());
-//            c.add(new Call());
-//            c.add(new Call());
-//            c.add(new Call());
-//            c.add(new Call());
-//            c.add(new Call());
-//            c.add(new Call());
+            c = new ArrayList<>();
+            c.add(new Call());
+            c.add(new Call());
+            c.add(new Call());
+            c.add(new Call());
+            c.add(new Call());
+            c.add(new Call());
+            c.add(new Call());
+            c.add(new Call());
 
             CallByDonAdapter cbd = new CallByDonAdapter(getContext(), c);
             listView.setAdapter(cbd);

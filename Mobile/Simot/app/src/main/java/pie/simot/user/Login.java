@@ -34,11 +34,14 @@ public class Login extends AppCompatActivity{
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = usernameInput.getText().toString();
-                password = passwordInput.getText().toString();
-
-                LoginAsync la = new LoginAsync(Login.this.getBaseContext(), Login.this, username, password);
-                la.execute();
+                Intent next = new Intent(Login.this, Dashboard.class);
+                Login.this.startActivity(next);
+                finish();
+//                username = usernameInput.getText().toString();
+//                password = passwordInput.getText().toString();
+//
+//                LoginAsync la = new LoginAsync(Login.this.getBaseContext(), Login.this, username, password);
+//                la.execute();
             }
         });
         registerButton.setOnClickListener(new OnClickListener() {
